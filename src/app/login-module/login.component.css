@@ -1,0 +1,130 @@
+
+* { box-sizing:border-box; }
+
+body {
+	font-family: Helvetica;
+	background: #eee;
+  -webkit-font-smoothing: antialiased;
+}
+
+.title { 
+	text-align:center;
+    margin-top: 4em;
+}
+
+h3, i { 
+    font-weight: 300;
+    color: #636363;
+ }
+
+ .mb1{
+    margin-bottom: 1px;
+}
+
+table{
+    margin: 0 auto;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+form {
+	width: 380px;
+	margin: 1em auto;
+	padding: 3em 2em 2em 2em;
+	background: #fafafa;
+	border: 1px solid #ebebeb;
+	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+}
+
+.group { 
+	position: relative; 
+	margin-bottom: 45px; 
+}
+
+input {
+	font-size: 18px;
+	-webkit-appearance: none;
+	display: block;
+	background: #fafafa;
+	color: #636363;
+	width: 100%;
+}
+
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 1em 0;
+  width: 100%;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #8a031b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.button:focus { outline: 0; }
+
+
+/* Button modifiers */
+
+.redButton {
+  background: #b00020;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.redButton:hover { background: #b00020c9; }
+
+
+/* Ripples container */
+
+.ripples {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+/* Ripples circle */
+
+.ripplesCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.mdc-text-field{
+  width:100%;
+}
+
+.mdc-text-field .mdc-text-field__input{
+  caret-color: #e94948;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{
+  color:#e94948;
+}
+
+.mdc-text-field .mdc-line-ripple{
+  background-color:#e94948;
+}
