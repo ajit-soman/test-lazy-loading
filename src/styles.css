@@ -4,3 +4,7 @@
 body{
     background:#333;
 }
+
+.mat-tab-label-content{
+    color:#fff !important;
+  }

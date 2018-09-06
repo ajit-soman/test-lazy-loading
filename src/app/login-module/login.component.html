@@ -1,20 +1,48 @@
 <div class="title">
-        <h1>Things</h1>
+        <h1><img src="/assets/images/logo.svg" height="64px;" alt=""></h1>
 </div>
-<form>
-    <div class="group">
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email">
-        </mat-form-field>
-    </div>
-    <div class="group">
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
-        </mat-form-field> 
-    </div>
-    <button type="button" mdc-button class="button redButton" routerLink="/dashboard">Login
-        <div class="ripples buttonRipples">
-            <span class="ripplesCircle"></span>
-        </div>
-    </button>
-</form>
+<mat-tab-group class="tabs" mat-stretch-tabs>
+        <mat-tab label="LOGIN">
+                <form>
+                        <div class="group">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Email">
+                            </mat-form-field>
+                        </div>
+                        <div class="group">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Password">
+                            </mat-form-field> 
+                        </div>
+                        <button type="button" mdc-button class="button redButton" routerLink="/dashboard">Login
+                            <div class="ripples buttonRipples">
+                                <span class="ripplesCircle"></span>
+                            </div>
+                        </button>
+                    </form>
+        </mat-tab>
+        <mat-tab label="SIGNUP">
+                <form>
+                        <div class="group">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Email">
+                            </mat-form-field>
+                        </div>
+                        <div class="group">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Password">
+                            </mat-form-field> 
+                        </div>
+                        <div class="group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder=" Confirm Password">
+                                </mat-form-field> 
+                            </div>
+                        <button type="button" mdc-button class="button redButton" routerLink="/dashboard">Signup
+                            <div class="ripples buttonRipples">
+                                <span class="ripplesCircle"></span>
+                            </div>
+                        </button>
+                    </form>
+        </mat-tab>
+</mat-tab-group>
