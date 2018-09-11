@@ -18,3 +18,13 @@ body{
   #spinner{
     background-color: rgba(0,0,0,.288) !important;
   }
+
+  .snack-bar-error-color {
+    background-color: rgb(189, 24, 24);
+    color: #fff;
+  }
+
+  .snack-bar-success-color {
+    background-color: rgb(23, 141, 23);
+    color: #fff;
+  }

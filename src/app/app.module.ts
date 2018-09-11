@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';;
 import { HttpClientModule } from '@angular/common/http'; 
 import { NgHttpLoaderModule } from 'ng-http-loader'; 
 import { SpinnerComponent } from './spinner-component/spinner.component';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SpinnerComponent } from './spinner-component/spinner.component';
     BrowserAnimationsModule,
     HttpClientModule, 
     NgHttpLoaderModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes,{})
   ],
   providers: [],
