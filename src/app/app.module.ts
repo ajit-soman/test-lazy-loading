@@ -4,17 +4,26 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.route';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';;
+import { HttpClientModule } from '@angular/common/http'; 
+import { NgHttpLoaderModule } from 'ng-http-loader'; 
+import { SpinnerComponent } from './spinner-component/spinner.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule, 
+    NgHttpLoaderModule,
     RouterModule.forRoot(routes,{})
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[
+    SpinnerComponent
+  ]
 })
 export class AppModule { }

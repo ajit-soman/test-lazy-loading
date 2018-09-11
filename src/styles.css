@@ -13,3 +13,8 @@ body{
 .mat-tab-label-content{
     color:#fff !important;
   }
+
+
+  #spinner{
+    background-color: rgba(0,0,0,.288) !important;
+  }
