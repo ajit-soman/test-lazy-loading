@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 import { SpinnerVisibilityService } from 'ng-http-loader';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog-component/dialog.component';
 
 
 @Component({
@@ -12,10 +13,10 @@ import { MatSnackBar } from '@angular/material';
 })
 export class DashboardComponent {
 
-    constructor(private dashboardService: DashboardService, private spinner: SpinnerVisibilityService, private snackBar: MatSnackBar) {
+    constructor(private dashboardService: DashboardService, private spinner: SpinnerVisibilityService, private snackBar: MatSnackBar,public dialog: MatDialog) {
         // this.getDummyData();
         // spinner.show();
-        this.showSnackbar();
+        // this.showSnackbar();
     }
 
     getDummyData() {
@@ -44,5 +45,15 @@ export class DashboardComponent {
         });
     }
 
+    openDialog() {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            height: '400px',
+  width: '600px',
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        });
+      }
 
 }

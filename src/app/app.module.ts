@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader'; 
 import { SpinnerComponent } from './spinner-component/spinner.component';
 import { MatSnackBarModule } from '@angular/material';
+import { DialogComponent } from './dialog-component/dialog.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,8 @@ import { MatSnackBarModule } from '@angular/material';
     HttpClientModule, 
     NgHttpLoaderModule,
     MatSnackBarModule,
-    RouterModule.forRoot(routes,{})
+    RouterModule.forRoot(routes,{}),
+    NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

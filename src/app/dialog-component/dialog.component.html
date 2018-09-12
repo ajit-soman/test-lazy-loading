@@ -1,0 +1,71 @@
+<h1 mat-dialog-title>Select Time</h1>
+<div mat-dialog-content>
+    <mat-radio-group [(ngModel)]="time">
+        <mat-radio-button value="days" class="mr-20">Days</mat-radio-button>
+        <mat-radio-button value="timePeriod">Time Period</mat-radio-button>
+    </mat-radio-group>
+    <div>
+        <span>Last</span>
+        <mat-form-field *ngIf="time=='days' && !slide" class="mlr-20">
+            <mat-select [(ngModel)]="duration">
+                <mat-option value="1Sec">1 Second</mat-option>
+                <mat-option value="5Sec">5 Seconds</mat-option>
+                <mat-option value="10Sec">10 Seconds</mat-option>
+                <mat-option value="15Sec">15 Seconds</mat-option>
+                <mat-option value="30Sec">30 Seconds</mat-option>
+
+                <mat-option value="1Min">1 Minute</mat-option>
+                <mat-option value="3Min">2 Minute</mat-option>
+                <mat-option value="15Min">5 Minutes</mat-option>
+                <mat-option value="10Min">10 Minutes</mat-option>
+                <mat-option value="15Min">15 Minutes</mat-option>
+                <mat-option value="30Min">30 Minutes</mat-option>
+
+                <mat-option value="1Hour">1 Hour</mat-option>
+                <mat-option value="2Hour">2 Hours</mat-option>
+                <mat-option value="5Hour">5 Hours</mat-option>
+                <mat-option value="10Hour">10 Hours</mat-option>
+                <mat-option value="15Hour">15 Hours</mat-option>
+                <mat-option value="30Hour">30 Hours</mat-option>
+
+                <mat-option value="1Day">1 Day</mat-option>
+                <mat-option value="7Day">7 Day</mat-option>
+                <mat-option value="30Day">30 Day</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="time=='days' && slide">
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Days">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Hours">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Minutes">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="number" placeholder="Seconds">
+            </mat-form-field>
+        </div>
+        <mat-slide-toggle [(ngModel)]="slide">Slide me!</mat-slide-toggle>
+    </div>
+
+    <div *ngIf="time=='timePeriod'">
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <input [ngxTimepicker]="tpicker">
+        <ngx-material-timepicker #tpicker></ngx-material-timepicker>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <input [ngxTimepicker]="tpicker1">
+        <ngx-material-timepicker #tpicker1></ngx-material-timepicker>
+    </div>
+</div>
