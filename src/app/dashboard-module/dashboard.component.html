@@ -9,5 +9,14 @@
     </mat-drawer>
     <mat-drawer-content></mat-drawer-content>
   </mat-drawer-container> -->
+<div>
+  <button mat-button style="background-color:red;color:#fff"  (click)="openDialog()">Click here</button>
+</div>
+<br>
+<div>
+    <button mat-button style="background-color:red;color:#fff"  (click)="showButtons()">Toogle Ghost</button>
+</div>
 
-  <button (click)="openDialog()">Click here</button>
+<div class="ghost-area">
+    <div id="ghost" [ngClass]="{'ghost':showGhost}"></div>
+</div>

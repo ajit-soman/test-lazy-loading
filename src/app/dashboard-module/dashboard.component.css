@@ -35,3 +35,19 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+#ghost{
+    position: fixed;
+    background-color:red;
+    bottom:-50px;
+    right: 20px;
+    height:50px;
+    width:50px;
+    transition: all 0.5s;
+  }
+
+.ghost{
+    transition: transform 0.5s;
+    transform:translateY(-100px);
+  }

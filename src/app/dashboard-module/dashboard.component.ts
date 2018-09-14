@@ -12,6 +12,7 @@ import { DialogComponent } from '../dialog-component/dialog.component';
     providers: [DashboardService]
 })
 export class DashboardComponent {
+    showGhost=false;
 
     constructor(private dashboardService: DashboardService, private spinner: SpinnerVisibilityService, private snackBar: MatSnackBar,public dialog: MatDialog) {
         // this.getDummyData();
@@ -48,12 +49,16 @@ export class DashboardComponent {
     openDialog() {
         const dialogRef = this.dialog.open(DialogComponent, {
             height: '400px',
-  width: '600px',
+            width: '600px',
         });
     
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed');
         });
+      }
+
+      showButtons(){
+        this.showGhost = !this.showGhost;
       }
 
 }
