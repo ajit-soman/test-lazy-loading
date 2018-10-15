@@ -1,0 +1,26 @@
+
+
+.main{
+    display: grid;
+	justify-content: center;
+	text-align: center;
+}
+
+.relative{
+	position: relative;
+}
+.container {
+	width: 500px;
+	float: left;
+	height: 300px;
+}
+
+.back{
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	padding-right: 10px;
+	font-size: 22px;
+	cursor:pointer;
+}
