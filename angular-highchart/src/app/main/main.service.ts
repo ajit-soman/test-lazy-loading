@@ -10,7 +10,7 @@ export class MainService{
     }
 
     getData(){
-        return this.http.get("/assets/json/app-data.json");
+        return this.http.get<any>("/assets/json/app-data.json");
     }
 
     getMoreData(){

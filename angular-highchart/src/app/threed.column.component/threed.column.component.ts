@@ -17,15 +17,36 @@ export class ThreeDColumnComponent implements OnInit {
     }
 
     loadHighChart() {
-        // this.mainService.getXmlData().subscribe(successData=>{
-        //     console.log(successData);
-        // },errorData=>{
-        //     console.log(errorData);
-        // })        
-        this.drawHighChart();
+        this.mainService.getData().subscribe(successData => {
+            console.log(successData);
+            var months = [], day1to115 = [], day15to30 = [];
+            successData.map(value => {
+                months.push(value.month);
+                let data1 = value.data;
+                let data2 = value.data.splice(0, 14);
+                var data2Avg = Math.round(data2.reduce((a, b) => a + b, 0) / data2.length) * 100 / 100;
+                var data1Avg = Math.round(data1.reduce((a, b) => a + b, 0) / data1.length) * 100 / 100;
+                day15to30.push(data1Avg);
+                day1to115.push(data2Avg);
+            })
+
+            var dayData = [{
+                name: 'Day 1-15',
+                data: day1to115,
+                stack: 'male'
+            }, {
+                name: 'Day 15-30',
+                data: day15to30,
+                stack: 'male'
+            }]
+            console.log(months, dayData);
+            this.drawHighChart(months, dayData);
+        }, errorData => {
+            console.log(errorData);
+        })
     }
 
-    drawHighChart() {
+    drawHighChart(monthData, dayData) {
 
         Highcharts.chart('container', {
             chart: {
@@ -44,7 +65,7 @@ export class ThreeDColumnComponent implements OnInit {
             },
 
             xAxis: {
-                categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas'],
+                categories: monthData,
                 labels: {
                     skew3d: true,
                     style: {
@@ -74,23 +95,7 @@ export class ThreeDColumnComponent implements OnInit {
                 }
             },
 
-            series: [{
-                name: 'John',
-                data: [5, 3, 4, 7, 2],
-                stack: 'male'
-            }, {
-                name: 'Joe',
-                data: [3, 4, 4, 2, 5],
-                stack: 'male'
-            }, {
-                name: 'Jane',
-                data: [2, 5, 6, 2, 1],
-                stack: 'female'
-            }, {
-                name: 'Janet',
-                data: [3, 0, 4, 4, 3],
-                stack: 'female'
-            }]
+            series: dayData
         });
     }
 
