@@ -17,15 +17,21 @@ export class ActivityGaugeComponent implements OnInit {
     }
 
     loadHighChart() {
-        // this.mainService.getXmlData().subscribe(successData=>{
-        //     console.log(successData);
-        // },errorData=>{
-        //     console.log(errorData);
-        // })        
-        this.drawHighChart();
+        this.mainService.getData().subscribe(successData=>{
+            var septemberData = successData[8].data;
+            var data2 = septemberData.splice(0,10);
+            var data1 = septemberData.splice(0,10);
+            var data3Avg = Math.round(septemberData.reduce((a, b) => a + b, 0) / septemberData.length) * 100 / 100;
+            var data2Avg = Math.round(data2.reduce((a, b) => a + b, 0) / data2.length) * 100 / 100;
+            var data1Avg = Math.round(data1.reduce((a, b) => a + b, 0) / data1.length) * 100 / 100;
+            
+            this.drawHighChart(data1Avg,data2Avg,data3Avg);
+        },errorData=>{
+            console.log(errorData);
+        })        
     }
 
-    drawHighChart() {
+    drawHighChart(avg1,avg2,avg3) {
         function renderIcons() {
 
             // Move icon
@@ -171,7 +177,7 @@ export class ActivityGaugeComponent implements OnInit {
                     color: Highcharts.getOptions().colors[0],
                     radius: '112%',
                     innerRadius: '88%',
-                    y: 80
+                    y: avg1
                 }]
             }, {
                 name: 'Exercise',
@@ -179,7 +185,7 @@ export class ActivityGaugeComponent implements OnInit {
                     color: Highcharts.getOptions().colors[1],
                     radius: '87%',
                     innerRadius: '63%',
-                    y: 65
+                    y: avg2
                 }]
             }, {
                 name: 'Stand',
@@ -187,7 +193,7 @@ export class ActivityGaugeComponent implements OnInit {
                     color: Highcharts.getOptions().colors[2],
                     radius: '62%',
                     innerRadius: '38%',
-                    y: 50
+                    y: avg3
                 }]
             }]
         });

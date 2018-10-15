@@ -23,7 +23,7 @@ export class ThreeDColumnComponent implements OnInit {
             successData.map(value => {
                 months.push(value.month);
                 let data1 = value.data;
-                let data2 = value.data.splice(0, 14);
+                let data2 = value.data.splice(0, 15);
                 var data2Avg = Math.round(data2.reduce((a, b) => a + b, 0) / data2.length) * 100 / 100;
                 var data1Avg = Math.round(data1.reduce((a, b) => a + b, 0) / data1.length) * 100 / 100;
                 day15to30.push(data1Avg);
