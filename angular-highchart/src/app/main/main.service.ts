@@ -12,4 +12,8 @@ export class MainService{
     getData(){
         return this.http.get("/assets/json/app-data.json");
     }
+
+    getMoreData(){
+         return this.http.get<any>("/assets/json/huge-app-data.json");
+    }
 }

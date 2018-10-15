@@ -8,8 +8,8 @@ declare var Highcharts: any;
     styleUrls: ['./column.component.css']
 })
 export class ColumnComponent implements OnInit {
-    enableBack=false;
-    constructor(private mainService:MainService){
+    enableBack = false;
+    constructor(private mainService: MainService) {
 
     }
     ngOnInit() {
@@ -17,37 +17,69 @@ export class ColumnComponent implements OnInit {
     }
 
     loadHighChart() {
-        this.mainService.getData().subscribe(successData=>{
-            console.log(successData);
-        },errorData=>{
+        this.mainService.getMoreData().subscribe(successData => {
+            var yearData = [];
+            var monthData = [];
+            var dayData=[];
+            successData.map(value => {
+                yearData.push({
+                    name: value.year,
+                    y: value.avg,
+                    drilldown: value.year.toString()
+                })
+
+                var monthTemp = {
+                    id: value.year,
+                    name: "Montly Avg",
+                    data: []
+                };
+                value.data.map(v => {
+                    var sum = v.data.reduce((a, b) => a + b, 0);
+                    var avg = Math.round(sum * 100 / v.data.length) / 100;
+                    var dayTemp = {
+                        id: value.year+v.month,
+                        data: v.data
+                    };
+                    monthTemp.data.push({
+                        drilldown: monthTemp.id + v.month,
+                        y: avg,
+                        name: v.month
+                    }) 
+                    dayData.push(dayTemp);
+                })
+                monthData.push(monthTemp);
+            });
+
+            this.drawHighChart(yearData,monthData,dayData);
+        }, errorData => {
             console.log(errorData);
-        })        
-        this.drawHighChart();
+        })
     }
 
-    drawHighChart(){
+    drawHighChart(yearColumnData,monthColumnData,dayColumnData) {
+        let drillColumn = monthColumnData.concat(dayColumnData);
         this.enableBack = false;
         var self = this;
         var chartOptions = {
             chart: {
                 type: 'column',
                 events: {
-                    drilldown: function (e) {  
+                    drilldown: function (e) {
                         self.enableBack = true;
+                    }
                 }
-            }
             },
             title: {
-                text: 'Basic drilldown'
+                text: 'Average drilldown'
             },
             xAxis: {
                 type: 'category'
             },
-    
+
             legend: {
                 enabled: false
             },
-    
+
             plotOptions: {
                 series: {
                     borderWidth: 0,
@@ -56,41 +88,21 @@ export class ColumnComponent implements OnInit {
                     }
                 }
             },
-    
+
             series: [{
-                name: 'Things',
+                name: 'Yearly Avg',
                 colorByPoint: true,
-                data: [{
-                    name: 'Animals',
-                    y: 5,
-                    drilldown: 'animals'
-                }]
+                data: yearColumnData
             }],
             drilldown: {
-                series: [{
-                    id: 'animals',
-                    name: 'Animals',
-                    data: [{
-                        name: 'Cats',
-                        y: 4,
-                        drilldown: 'cats'
-                    }, ['Dogs', 2],
-                        ['Cows', 1],
-                        ['Sheep', 2],
-                        ['Pigs', 1]
-                    ]
-                }, {
-    
-                    id: 'cats',
-                    data: [1, 2, 3]
-                }]
+                series: drillColumn
             }
         };
 
         Highcharts.chart('container', chartOptions);
     }
 
-    back(){
+    back() {
         this.loadHighChart();
     }
 }
